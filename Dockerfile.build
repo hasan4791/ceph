@@ -31,6 +31,6 @@ RUN DISTRO=$DISTRO \
     CLEAN_DNF=$CLEAN_DNF \
     CEPH_CTR_SRC=${CEPH_CTR_SRC} \
     bash -x ${CEPH_CTR_SRC}/buildcontainer-setup.sh
-RUN \
-    SCCACHE_URL="https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-$(uname -m)-unknown-linux-musl.tar.gz"; \
-    curl -L $SCCACHE_URL | tar --no-anchored --strip-components=1 -C /usr/local/bin/ -xzf - sccache
+#RUN \
+#    SCCACHE_URL="https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-$(uname -m)-unknown-linux-musl.tar.gz"; \
+#    curl -L $SCCACHE_URL | tar --no-anchored --strip-components=1 -C /usr/local/bin/ -xzf - sccache
