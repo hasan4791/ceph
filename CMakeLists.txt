@@ -548,6 +548,7 @@ else()
     set(WITH_BREAKPAD_DEFAULT ON)
 endif()
 
+set(WITH_BREAKPAD_DEFAULT OFF)
 option(WITH_BREAKPAD "Build with Google Breakpad crash reporter"  ${WITH_BREAKPAD_DEFAULT})
 if(WITH_BREAKPAD)
   set(HAVE_BREAKPAD ON)
