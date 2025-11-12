@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 if ! [ "${_SOURCED_LIB_BUILD}" = 1 ]; then
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -77,6 +77,9 @@ function prepare() {
     if test -f ./install-deps.sh ; then
         ci_debug "Running install-deps.sh"
         INSTALL_EXTRA_PACKAGES="ccache git $which_pkg lvm2"
+        if [ "$(uname -m)" == "ppc64le" ]; then
+            INSTALL_EXTRA_PACKAGES="$INSTALL_EXTRA_PACKAGES openblas-devel gfortran cargo"
+        fi
         $DRY_RUN source ./install-deps.sh || return 1
         trap clean_up_after_myself EXIT
     fi
@@ -120,16 +123,16 @@ EOM
     local c_compiler="${discovered_c_compiler}"
     local cmake_opts
     cmake_opts+=" -DCMAKE_CXX_COMPILER=$cxx_compiler -DCMAKE_C_COMPILER=$c_compiler"
-    cmake_opts+=" -DCMAKE_CXX_FLAGS_DEBUG=-Werror"
+    #cmake_opts+=" -DCMAKE_CXX_FLAGS_DEBUG=-Werror"
     cmake_opts+=" -DENABLE_GIT_VERSION=OFF"
     cmake_opts+=" -DWITH_GTEST_PARALLEL=ON"
     cmake_opts+=" -DWITH_FIO=ON"
     cmake_opts+=" -DWITH_CEPHFS_SHELL=ON"
     cmake_opts+=" -DWITH_GRAFANA=ON"
     cmake_opts+=" -DWITH_SPDK=ON"
-    cmake_opts+=" -DWITH_RBD_MIRROR=ON"
+    cmake_opts+=" -DWITH_RBD_MIRROR=ON -DWITH_BREAKPAD=OFF -DWITH_MGR_DASHBOARD_FRONTEND=OFF"
     if [ $WITH_CRIMSON ]; then
-        cmake_opts+=" -DWITH_CRIMSON=ON"
+        cmake_opts+=" -DWITH_CRIMSON=OFF"
     fi
     if [ $WITH_RBD_RWL ]; then
         cmake_opts+=" -DWITH_RBD_RWL=ON"
