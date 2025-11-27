@@ -130,14 +130,14 @@ EOM
     cmake_opts+=" -DWITH_CEPHFS_SHELL=ON"
     cmake_opts+=" -DWITH_GRAFANA=ON"
     cmake_opts+=" -DWITH_SPDK=ON"
-    cmake_opts+=" -DWITH_RBD_MIRROR=ON -DWITH_BREAKPAD=OFF -DWITH_MGR_DASHBOARD_FRONTEND=OFF"
+    cmake_opts+=" -DWITH_RBD_MIRROR=ON -DWITH_BREAKPAD=OFF -DWITH_MGR_DASHBOARD_FRONTEND=OFF -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
     if [ $WITH_CRIMSON ]; then
         cmake_opts+=" -DWITH_CRIMSON=OFF"
     fi
     if [ $WITH_RBD_RWL ]; then
         cmake_opts+=" -DWITH_RBD_RWL=ON"
     fi
-    cmake_opts+=" -DWITH_RBD_SSD_CACHE=ON"
+    cmake_opts+=" -DWITH_RBD_SSD_CACHE=ON -DWITH_CRIMSON=OFF"
 
     cmake_opts+=" $(detect_ceph_dev_pkgs)"
 
