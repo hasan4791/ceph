@@ -671,6 +671,7 @@ endif()
 
 if(LINUX)
   add_definitions(-D__linux__)
+  add_compile_options(-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong   -m64 -mcpu=power9 -mtune=power9 -fasynchronous-unwind-tables -fstack-clash-protection)
 endif(LINUX)
 
 # ASAN and friends

@@ -774,6 +774,7 @@ do_rgw_conf() {
 [client.rgw.${current_port}]
         rgw frontends = $rgw_frontend port=${current_port}${flight_conf:+,arrow_flight}
         admin socket = ${CEPH_OUT_DIR}/radosgw.${current_port}.asok
+        #rgw_thread_pool_size = 1
         debug rgw_flight = 20
         debug rgw_notification = 20
 EOF

@@ -151,7 +151,7 @@
 %{!?python3_version_nodots: %global python3_version_nodots 3}
 %{!?python3_version: %global python3_version 3}
 %if 0%{with crimson}
-%{!?gts_version: %global gts_version 13}
+%{!?gts_version: %global gts_version 12}
 %else
 %if 0%{?rhel} == 8
 %{!?gts_version: %global gts_version 11}
@@ -167,7 +167,7 @@
 #
 # Also disable lto on systems that do not support symver attribute
 # See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=48200 for details
-%if 0%{?gts_version} == 13 || (0%{?rhel} && 0%{?rhel} < 9)  || ( 0%{?suse_version} && 0%{?suse_version} <= 1500 )
+%if 0%{?gts_version} == 12 || (0%{?rhel} && 0%{?rhel} < 9)  || ( 0%{?suse_version} && 0%{?suse_version} <= 1500 )
 %define _lto_cflags %{nil}
 %endif
 
@@ -202,7 +202,7 @@
 # redhat-rpm-config still passes -fplugin=gcc-annobin to the compiler.
 %undefine _annotated_build
 %if 0%{?gts_version} > 0
-%if 0%{gts_version} == 13
+%if 0%{gts_version} == 12
 %if 0%{?enable_devtoolset13:1}
 %enable_devtoolset13
 %endif
