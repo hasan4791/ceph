@@ -671,6 +671,7 @@ endif()
 
 if(LINUX)
   add_definitions(-D__linux__)
+  add_compile_options(-O2 -flto=auto)
 endif(LINUX)
 
 # ASAN and friends
